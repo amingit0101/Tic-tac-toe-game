@@ -3,7 +3,7 @@
 short main_menu(){
     extern rgb_color main_menu_borders_color,main_menu_string_color;
     extern short shift_left_main_menu,shift_down_main_menu;
-    extern char menu_up,menu_down,menu_confirm,menu_go_back;
+    extern short menu_up,menu_down,menu_confirm,menu_go_back;
     if(menu_up==0||menu_down==0||menu_next==0||menu_prev==0){
         FILE *f=fopen("menu-buttons.txt","r");
         char tmp[6][10];
@@ -83,7 +83,7 @@ short main_menu(){
 short parameters_menu(){
     extern rgb_color parameters_menu_borders_color,parameters_menu_string_color;
     extern short shift_left_parameters_menu,shift_down_parameters_menu;
-    extern char menu_up,menu_down,menu_confirm,menu_go_back;
+    extern short menu_up,menu_down,menu_confirm,menu_go_back;
     printf("\e[?25l");
     space(shift_left_parameters_menu+7);set_color(invert_color(parameters_menu_string_color),3);puts("Parameters:");printf(reset_style);
     printf("\n");

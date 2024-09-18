@@ -7,7 +7,7 @@ void game_initialization(coord table[dim][dim],position *position){
 }
 void select_players_chars(player players[2],short player_num){
     char arrow;
-    extern char menu_confirm;
+    extern short menu_confirm;
     if(player_num==2) return;
     if(player_num==0) players[0].c='X';
     else players[1].c='O';
@@ -161,7 +161,7 @@ bool equ_2_positions(position p1,position p2){
      return (p1.x==p2.x&&p1.y==p2.y);
 }
 position next_position(position currant_position,coord table[dim][dim],char arrow){
-    extern char up,down,left,right;
+    extern short up,down,left,right;
     position m;
     if(arrow==up) return next_up_position(currant_position,table);
     else if(arrow==down) return next_down_position(currant_position,table);

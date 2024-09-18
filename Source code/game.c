@@ -1,11 +1,12 @@
 #include "environement.h"
 void main(){
+    extern short dim,shift_left,shift_down;
+    extern short up,down,left,right,exit_game,confirm;
+    extern rgb_color area_color;
     get_last_game_bottons_from_file("game-bottons.txt");
     get_last_menu_bottons_from_file("menu-buttons.txt");
     get_last_table_parameters_from_file("table.txt");
-    extern short dim,shift_left,shift_down;
-    extern char up,down,left,right,exit_game,confirm;
-    extern rgb_color area_color;
+    if(confirm==0) confirm='\r';
     coord table[dim][dim];
     position position,prev_position;
     player players[2];
@@ -66,6 +67,10 @@ play_again:
         do{
             arrow=getch();
             if((int)arrow==-32) arrow=getch();
+            if(arrow==exit_game){
+                clear_screen();
+                return;
+            }
             prev_position=position;
             position=next_position(position,table,arrow);
             gotoyx((prev_position.y-position.y)*2,(position.x-prev_position.x)*4);

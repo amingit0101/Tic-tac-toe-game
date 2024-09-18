@@ -17,7 +17,7 @@ void main_menu_settings(){
     short tmp_shift_left_main_menu=shift_left_main_menu,tmp_shift_down_main_menu=shift_down_main_menu;
     rgb_color tmp_main_menu_borders_color=main_menu_borders_color;
     rgb_color tmp_main_menu_string_color=main_menu_string_color;
-    extern char menu_up,menu_down,menu_confirm,menu_go_back;
+    extern short menu_up,menu_down,menu_confirm,menu_go_back;
     char arguments[300]="";
     printf("\033[?25l");
     puts("          Main menu settings:\n");
@@ -108,7 +108,7 @@ recover:
 void parameters_menu_settings(){
     extern short shift_left_parameters_menu,shift_down_parameters_menu;
     extern rgb_color parameters_menu_borders_color,parameters_menu_string_color;
-    extern char menu_up,menu_down,menu_confirm,menu_go_back;
+    extern short menu_up,menu_down,menu_confirm,menu_go_back;
     short tmp_shift_left_parameters_menu=shift_left_parameters_menu;
     short tmp_shift_down_parameters_menu=shift_down_parameters_menu;
     rgb_color tmp_parameters_menu_borders_color=parameters_menu_borders_color;
@@ -250,13 +250,13 @@ select_menu:
 }
 void game_settings(){
     extern short dim,shift_left,shift_down;
-    extern char border_x,border_y;
+    extern short border_x,border_y;
     extern rgb_color border_color,area_color;
-    extern char menu_up,menu_down,menu_confirm,menu_go_back;
+    extern short menu_up,menu_down,menu_confirm,menu_go_back;
     short tmp_dim=dim;
     short tmp_shift_left=shift_left,tmp_shift_down=shift_down;
     rgb_color tmp_border_color=border_color,tmp_area_color=area_color;
-    char tmp_border_x=border_x,tmp_border_y=border_y;
+    short tmp_border_x=border_x,tmp_border_y=border_y;
     char arguments[300];
     printf("           GAME SETTINGS:\n");
     printf("   Game dimension:");
@@ -271,7 +271,7 @@ void game_settings(){
     printf("   Horisontal Border character:");printf("%c\n",border_y);
     printf("   Shift table left (pixels):");printf("%d\n",shift_left);
     printf("   Shift table down :");printf("%d\n\n",shift_down);
-    gotoyx(11,18);
+    gotoyx(8,18);
     char arrow;
     printf("\033[?25h");
 game_dim:

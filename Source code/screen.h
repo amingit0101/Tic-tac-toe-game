@@ -105,7 +105,7 @@ void print_color_mod(rgb_color color,short mod,short digits_num){
 rgb_color select_color(rgb_color color,char colored_char,char *arrow,short mod,int touches_num, ... ){
     va_list loop_evade_buttons;
     char med;
-    extern char menu_up,menu_down,menu_confirm,menu_go_back;
+    extern short menu_up,menu_down,menu_confirm,menu_go_back;
     print_color_mod(color,mod,3);
     gotoyx(0,1);
     set_color(color,mod);putchar(colored_char);
@@ -227,7 +227,7 @@ char select_character(char ch,char *arrow,int evade_loop_chars_num, ...){
 }
 void write_tictactoe_table(){
     extern short dim,shift_left,shift_down;
-    extern char border_x, border_y;
+    extern short border_x, border_y;
     extern rgb_color border_color,area_color;
     gotoyx(-shift_down,0);
     for(int i=0;i<dim;i++){
@@ -367,10 +367,10 @@ void third_frame(){
    lancher_animation3(frame,12,60);
 }
 void game_buttons(){
-    extern char up,down,left,right,confirm,exit_game;
-    extern char up_left,up_right,down_left,down_right;
-    extern char menu_up,menu_down,menu_go_back,menu_next,menu_prev,menu_confirm;
-    printf("\033[?25h");
+    extern short up,down,left,right,confirm,exit_game;
+    extern short up_left,up_right,down_left,down_right;
+    extern short menu_up,menu_down,menu_go_back,menu_next,menu_prev,menu_confirm;
+    printf("\033[?25l");
     puts("         Setting bottons in game");
     printf("  Up:");print_button(up);puts("");
     printf("  Down:");print_button(down);puts("");

@@ -35,7 +35,7 @@ void recover_variables(char *types_v, ...){
 }
 void get_settings_table_arguments(char *buffer){
     extern short dim,shift_left,shift_down;
-    extern char border_x,border_y;
+    extern short border_x,border_y;
     extern rgb_color border_color,area_color;
     char tmp_string[100]="";
     strcpy(buffer,"");
@@ -93,7 +93,7 @@ void get_settings_parameters_menu_arguments(char *buffer){
     }
 }
 void get_game_buttons_parameters_arguments(char *buffer){
-    extern char up,down,left,right,exit_game,confirm;
+    extern short up,down,left,right,exit_game,confirm;
     char tmp_string[100]="";
     for(int i=0;i<10;i++){
         switch(i){
@@ -113,7 +113,7 @@ void get_game_buttons_parameters_arguments(char *buffer){
     }
 }
 void get_menu_buttons_parameters_arguments(char *buffer){
-    extern char menu_up,menu_down,menu_go_back,menu_confirm;
+    extern short menu_up,menu_down,menu_go_back,menu_confirm;
     char tmp_string[100]="";
     for(int i=0;i<6;i++){
         switch(i){
@@ -130,7 +130,7 @@ void get_menu_buttons_parameters_arguments(char *buffer){
 }
 void get_table_settings_from_arguments(char *argv[]){
     extern short dim,shift_left,shift_down;
-    extern char border_x,border_y;
+    extern short border_x,border_y;
     extern rgb_color border_color,area_color;
     dim=atoi(argv[1]);
     shift_left=atoi(argv[2]);
@@ -160,8 +160,8 @@ void get_parameters_menu_parameters_from_arguments(char *argv[]){
 
 }
 void get_game_buttons_setting_from_arguments(char *argv[]){
-    extern char up,down,left,right,exit_game,confirm;
-    extern char up_left,up_right,down_left,down_right;
+    extern short up,down,left,right,exit_game,confirm;
+    extern short up_left,up_right,down_left,down_right;
     up=atoi(argv[1]);
     down=atoi(argv[2]);
     left=atoi(argv[3]);
@@ -174,7 +174,7 @@ void get_game_buttons_setting_from_arguments(char *argv[]){
     down_right=atoi(argv[10]);
 }
 void get_menu_buttons_setting_from_arguments(char *argv[]){
-    extern char menu_up,menu_down,menu_go_back,menu_confirm,menu_next,menu_prev;
+    extern short menu_up,menu_down,menu_go_back,menu_confirm,menu_next,menu_prev;
     menu_up=atoi(argv[1]);
     menu_down=atoi(argv[2]);
     menu_go_back=atoi(argv[3]);
@@ -252,7 +252,7 @@ void remove_BOM(char *str){
 void save_table_parameters_to_file(char *f_name){
     FILE *f=fopen(f_name,"w");
     extern short dim,shift_left,shift_down;
-    extern char border_x,border_y;
+    extern short border_x,border_y;
     extern rgb_color border_color,area_color;
     fprintf(f,"%d\n",dim);
     fprintf(f,"%d\n",shift_left);
@@ -287,9 +287,9 @@ void save_parameters_menu_parameters_to_file(char *f_name){
 }
 void save_game_bottons_to_file(char *f_name){
     FILE *f=fopen(f_name,"w");
-    extern char up,down,left,right,exit_game,confirm;
-    extern char up_left,up_right;
-    extern char down_left,down_right;
+    extern short up,down,left,right,exit_game,confirm;
+    extern short up_left,up_right;
+    extern short down_left,down_right;
     fprintf(f,"%d\n",up);
     fprintf(f,"%d\n",down);
     fprintf(f,"%d\n",left);
@@ -304,7 +304,7 @@ void save_game_bottons_to_file(char *f_name){
 }
 void save_menu_bottons_to_file(char *f_name){
     FILE *f=fopen(f_name,"w");
-    extern char menu_up,menu_down,menu_go_back,menu_confirm;
+    extern short menu_up,menu_down,menu_go_back,menu_confirm;
     fprintf(f,"%d\n",menu_up);
     fprintf(f,"%d\n",menu_down);
     fprintf(f,"%d\n",menu_confirm);
@@ -320,7 +320,7 @@ void get_last_table_parameters_from_file(char *f_name){
         return;
     }
     extern short dim,shift_left,shift_down;
-    extern char border_x,border_y;
+    extern short border_x,border_y;
     extern rgb_color border_color,area_color;
     char tmp[7][10];
     for(int i=0;i<7;i++){
@@ -378,9 +378,9 @@ void get_last_game_bottons_from_file(char *f_name){
         save_game_bottons_to_file(f_name);
         return;
     }
-    extern char up,down,left,right,exit_game,confirm;
-    extern char up_left,up_right;
-    extern char down_left,down_right;
+    extern short up,down,left,right,exit_game,confirm;
+    extern short up_left,up_right;
+    extern short down_left,down_right;
     char first_line[10];
     char tmp[10];
     fscanf(f,"%s\n",first_line);
@@ -390,7 +390,9 @@ void get_last_game_bottons_from_file(char *f_name){
     fscanf(f,"%d\n",&left);
     fscanf(f,"%d\n",&right);
     fscanf(f,"%d\n",&confirm);
+    if(confirm==0) confirm='\r';
     fscanf(f,"%d\n",&exit_game);
+    if(exit_game==0) exit_game='\r';
     fscanf(f,"%d\n",&up_left);
     fscanf(f,"%d\n",&up_right);
     fscanf(f,"%d\n",&down_left);
@@ -398,13 +400,13 @@ void get_last_game_bottons_from_file(char *f_name){
     fclose(f);
 }
 void get_last_menu_bottons_from_file(char *f_name){
-    extern char menu_up, menu_down,menu_go_back,menu_confirm;
+    extern short menu_up, menu_down,menu_go_back,menu_confirm;
     FILE *f=fopen(f_name,"r");
     if(f==NULL){
         save_menu_bottons_to_file(f_name);
         return;
     }
-    char tmp[7][10];
+    char tmp[6][10];
     for(int i=0;i<6;i++){
         fscanf(f,"%s\n",tmp[i]);
     }

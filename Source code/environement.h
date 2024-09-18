@@ -67,8 +67,8 @@ typedef struct coord{
     bool used;
     player player;
 }coord;
-short dim=3,shift_left=6,shift_down=0;
-char border_x='-',border_y='|';
+static short dim=3,shift_left=6,shift_down=0;
+short border_x='-',border_y='|';
 rgb_color border_color,area_color;
 
 rgb_color main_menu_borders_color,main_menu_string_color;
@@ -76,12 +76,12 @@ rgb_color parameters_menu_borders_color,parameters_menu_string_color;
 short shift_left_main_menu=0,shift_down_main_menu=0;
 short shift_left_parameters_menu=0,shift_down_parameters_menu=0;
 
-char up='8',down='2',left='6',right='4',exit_game='\b',confirm='\r';
-char up_left='9',up_right='7';
-char down_left='3',down_right='1';
+short up='8',down='2',left='6',right='4',exit_game='\b',confirm='5';
+short up_left='9',up_right='7';
+short down_left='3',down_right='1';
 
-char menu_up=72,menu_down=80,menu_next=77,menu_prev=75;
-char menu_go_back='\b',menu_confirm='\r';
+short menu_up=72,menu_down=80,menu_next=77,menu_prev=75;
+short menu_go_back='\b',menu_confirm='\r';
 
 int power(int n,int m){
     int result=1;

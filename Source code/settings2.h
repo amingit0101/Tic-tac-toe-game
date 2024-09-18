@@ -2,9 +2,9 @@
 #define SETTINGS2_H_INCLUDED
 
 void buttons_settings(){
-    extern char up,down,left,right,confirm,exit_game;
-    extern char up_left,up_right,down_left,down_right;
-    extern char menu_up,menu_down,menu_go_back,menu_next,menu_prev,menu_confirm;
+    extern short up,down,left,right,confirm,exit_game;
+    extern short up_left,up_right,down_left,down_right;
+    extern short menu_up,menu_down,menu_go_back,menu_next,menu_prev,menu_confirm;
     printf("\033[?25h");
     puts("         Setting bottons in game");
     printf("  Up:");print_button(up);puts("");
