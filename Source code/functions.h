@@ -290,16 +290,16 @@ void save_game_bottons_to_file(char *f_name){
     extern char up,down,left,right,exit_game,confirm;
     extern char up_left,up_right;
     extern char down_left,down_right;
-    fprintf(f,"%c\n",up);
-    fprintf(f,"%c\n",down);
-    fprintf(f,"%c\n",left);
-    fprintf(f,"%c\n",right);
-    fprintf(f,"%c\n",confirm);
-    fprintf(f,"%c\n",exit_game);
-    fprintf(f,"%c\n",up_left);
-    fprintf(f,"%c\n",up_right);
-    fprintf(f,"%c\n",down_left);
-    fprintf(f,"%c",down_right);
+    fprintf(f,"%d\n",up);
+    fprintf(f,"%d\n",down);
+    fprintf(f,"%d\n",left);
+    fprintf(f,"%d\n",right);
+    fprintf(f,"%d\n",confirm);
+    fprintf(f,"%d\n",exit_game);
+    fprintf(f,"%d\n",up_left);
+    fprintf(f,"%d\n",up_right);
+    fprintf(f,"%d\n",down_left);
+    fprintf(f,"%d",down_right);
     fclose(f);
 }
 void save_menu_bottons_to_file(char *f_name){
@@ -389,12 +389,8 @@ void get_last_game_bottons_from_file(char *f_name){
     fscanf(f,"%d\n",&down);
     fscanf(f,"%d\n",&left);
     fscanf(f,"%d\n",&right);
-    fscanf(f,"%s\n",tmp);
-    if(strlen(tmp)==0) confirm='\r';
-    else confirm=atoi(tmp);
-    fscanf(f,"%s\n",tmp);
-    if(strlen(tmp)==0) exit_game='\r';
-    else exit_game=atoi(tmp);
+    fscanf(f,"%d\n",&confirm);
+    fscanf(f,"%d\n",&exit_game);
     fscanf(f,"%d\n",&up_left);
     fscanf(f,"%d\n",&up_right);
     fscanf(f,"%d\n",&down_left);

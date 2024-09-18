@@ -1,59 +1,6 @@
 #ifndef SETTINGS2_H_INCLUDED
 #define SETTINGS2_H_INCLUDED
-void print_button(char button){
-    switch(button){
-    case 75:printf("Left arrow ");break;
-    case 77:printf("Right arrow");break;
-    case 80:printf("Down arrow ");break;
-    case 72:printf("Up arrow   ");break;
-    case '\b':printf("Backslash  ");break;
-    case '\r':printf("Enter      ");break;
-    default : printf("%c          ",button);break;
-    }
-}
-char select_button(char last){
-    char ch=0,prev_ch=0;
-    do{
-        prev_ch=ch;
-        ch=getch();
-        if(ch!='\r') print_button(ch);
-        else print_button(prev_ch);
-        character('\b',11);
-    }while(ch!='\r');
-    return prev_ch;
-}
-char select_button_containing_enter(){
-    char ch=0,prev_ch=0;bool first_tap=true;
-    do{
-        prev_ch=ch;
-        ch=getch();
-        if(ch!='\r'&&!first_tap) print_button(ch);
-        else if(!first_tap&&ch=='\r'){
-            print_button(prev_ch);
-            break;
-        }
-        else{
-            print_button(ch);
-            break;
-        }
-        if(first_tap) !first_tap;
-        character('\b',11);
-    }while(true);
-    character('\b',11);
-    return prev_ch;
-}
-char select_no_control_button(){
-    char ch=0,prev_ch=0;
-    do{
-        prev_ch=ch;
-        ch=getch();
-        while(!no_control_char(ch)&&ch!='\r') ch=getch();
-        if(ch!='\r') print_button(ch);
-        else print_button(prev_ch);
-        character('\b',11);
-    }while(ch!='\r');
-    return prev_ch;
-}
+
 void buttons_settings(){
     extern char up,down,left,right,confirm,exit_game;
     extern char up_left,up_right,down_left,down_right;

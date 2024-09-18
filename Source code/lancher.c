@@ -21,7 +21,8 @@ void main(){
     get_last_menu_bottons_from_file("menu-buttons.txt");
     get_last_table_parameters_from_file("table.txt");
     get_last_game_bottons_from_file("game-buttons.txt");
-    printf("%d %d %d \n",menu_up,menu_down,menu_confirm);
+    clear_screen();
+    game_buttons();
     short choose;
     bool exit=false;
 main_menu:
