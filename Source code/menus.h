@@ -26,16 +26,16 @@ short main_menu(){
     space(shift_left_main_menu);set_color(main_menu_borders_color,1);puts("         -----------");
     printf("\n");
     space(shift_left_main_menu);printf(" ");puts("           ");
-    space(shift_left_main_menu);printf(" ");set_color(main_menu_string_color,3);printf("Two players\n");printf(reset_style);
+    space(shift_left_main_menu);printf(" ");set_color(main_menu_string_color,3);printf("Two players\n");printf("%s",reset_style);
     space(shift_left_main_menu);printf(" ");puts("           ");
     space(shift_left_main_menu);printf(" ");puts("             ");
-    space(shift_left_main_menu);printf(" ");set_color(main_menu_string_color,3);printf("Against a bot\n");printf(reset_style);
+    space(shift_left_main_menu);printf(" ");set_color(main_menu_string_color,3);printf("Against a bot\n");printf("%s",reset_style);
     space(shift_left_main_menu);printf(" ");puts("             ");
     space(shift_left_main_menu);printf(" ");puts("          ");
-    space(shift_left_main_menu);printf(" ");set_color(main_menu_string_color,3);printf("Parameters\n");printf(reset_style);
+    space(shift_left_main_menu);printf(" ");set_color(main_menu_string_color,3);printf("Parameters\n");printf("%s",reset_style);
     space(shift_left_main_menu);printf(" ");puts("          ");
     space(shift_left_main_menu);printf(" ");puts("    ");
-    space(shift_left_main_menu);printf(" ");set_color(main_menu_string_color,3);printf("Exit\n");printf(reset_style);
+    space(shift_left_main_menu);printf(" ");set_color(main_menu_string_color,3);printf("Exit\n");printf("%s",reset_style);
     space(shift_left_main_menu);printf(" ");puts("    ");
     printf("\n");
     char arrow;
@@ -77,7 +77,7 @@ short main_menu(){
         if(choose>4) choose=1;
         gotoyx(-11,0);
     }while(arrow!=menu_confirm);
-    printf(reset_style);
+    printf("%s",reset_style);
     return choose;
 }
 short parameters_menu(){
@@ -85,13 +85,13 @@ short parameters_menu(){
     extern short shift_left_parameters_menu,shift_down_parameters_menu;
     extern short menu_up,menu_down,menu_confirm,menu_go_back;
     printf("\e[?25l");
-    space(shift_left_parameters_menu+7);set_color(invert_color(parameters_menu_string_color),3);puts("Parameters:");printf(reset_style);
+    space(shift_left_parameters_menu+7);set_color(invert_color(parameters_menu_string_color),3);puts("Parameters:");printf("%s",reset_style);
     printf("\n");
     space(shift_left_parameters_menu);printf(" ");puts("        ");
-    space(shift_left_parameters_menu);printf(" ");set_color(parameters_menu_string_color,3);printf("In game\n");printf(reset_style);
+    space(shift_left_parameters_menu);printf(" ");set_color(parameters_menu_string_color,3);printf("In game\n");printf("%s",reset_style);
     space(shift_left_parameters_menu);printf(" ");puts("        ");
     space(shift_left_parameters_menu);printf(" ");puts("     ");
-    space(shift_left_parameters_menu);printf(" ");set_color(parameters_menu_string_color,3);printf("Menus\n");printf(reset_style);
+    space(shift_left_parameters_menu);printf(" ");set_color(parameters_menu_string_color,3);printf("Menus\n");printf("%s",reset_style);
     space(shift_left_parameters_menu);printf(" ");puts("     ");
     space(shift_left_parameters_menu);printf(" ");puts("    ");
     space(shift_left_parameters_menu);printf(" ");set_color(parameters_menu_string_color,3);printf("Bottons\n");printf(reset_style);

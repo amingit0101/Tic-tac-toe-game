@@ -23,13 +23,13 @@ void main_menu_settings(){
     puts("          Main menu settings:\n");
     printf("   Foreground border color:");
     print_num_with_0_begin(main_menu_borders_color.fg,3);printf(" ");
-    set_color(main_menu_borders_color,1);printf("C\n");printf(reset_style);
+    set_color(main_menu_borders_color,1);printf("C\n");printf("%s",reset_style);
     printf("   Foreground string color:");
     print_num_with_0_begin(main_menu_string_color.fg,3);printf(" ");
-    set_color(main_menu_string_color,1);printf("C\n");printf(reset_style);
+    set_color(main_menu_string_color,1);printf("C\n");printf("%s",reset_style);
     printf("   Background string color:");
     print_num_with_0_begin(main_menu_string_color.bg,3);printf(" ");
-    set_color(main_menu_string_color,3);printf("C\n");printf(reset_style);
+    set_color(main_menu_string_color,3);printf("C\n");printf("%s",reset_style);
     printf("   Shift left:%d\n",shift_left_main_menu);
     printf("   Shift down:%d\n\n",shift_down_main_menu);
     char arrow;
@@ -118,13 +118,13 @@ void parameters_menu_settings(){
     puts("          Parameters menu settings:\n");
     printf("   Foreground border color:");
     print_num_with_0_begin(parameters_menu_borders_color.fg,3);printf(" ");
-    set_color(parameters_menu_borders_color,1);printf("C\n");printf(reset_style);
+    set_color(parameters_menu_borders_color,1);printf("C\n");printf("%s",reset_style);
     printf("   Foreground string color:");
     print_num_with_0_begin(parameters_menu_string_color.fg,3);printf(" ");
-    set_color(main_menu_string_color,1);printf("C\n");printf(reset_style);
+    set_color(main_menu_string_color,1);printf("C\n");printf("%s",reset_style);
     printf("   Background String color:");
     print_num_with_0_begin(parameters_menu_string_color.bg,3);printf(" ");
-    set_color(parameters_menu_string_color,3);printf("C\n");printf(reset_style);
+    set_color(parameters_menu_string_color,3);printf("C\n");printf("%s",reset_style);
     printf("   Shift left:%d\n",shift_left_parameters_menu);
     printf("   Shift down:%d\n\n",shift_down_parameters_menu);
     char arrow;
@@ -235,8 +235,9 @@ short select_menu(){
     else return choose;
 }
 void menu_settings(){
+    short menu;
 select_menu:
-    short menu=select_menu();
+    menu=select_menu();
     clear_screen();
     switch(menu){
     case 1:
@@ -263,10 +264,10 @@ void game_settings(){
     print_num_with_0_begin(dim,2);putchar('\n');
     printf("   Borders fg color(RGB):");
     print_num_with_0_begin(border_color.fg,3);gotoyx(0,1);
-    set_color(border_color,1);printf("C\n");printf(reset_style);
+    set_color(border_color,1);printf("C\n");printf("%s",reset_style);
     printf("   Area color:");
     print_num_with_0_begin(area_color.bg,3);putchar(' ');
-    set_color(area_color,1);printf("C\n");printf(reset_style);
+    set_color(area_color,1);printf("C\n");printf("%s",reset_style);
     printf("   Vertical Border character:");printf("%c\n",border_x);
     printf("   Horisontal Border character:");printf("%c\n",border_y);
     printf("   Shift table left (pixels):");printf("%d\n",shift_left);

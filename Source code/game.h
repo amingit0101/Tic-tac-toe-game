@@ -7,7 +7,7 @@ void game_initialization(coord table[dim][dim],position *position){
 }
 void select_players_chars(player players[2],short player_num){
     char arrow;
-    extern short menu_confirm;
+    extern short menu_confirm,menu_next,menu_prev;
     if(player_num==2) return;
     if(player_num==0) players[0].c='X';
     else players[1].c='O';
@@ -27,7 +27,7 @@ player1char:
         arrow=getch();
         if((int)arrow==-32) arrow=getch();
     }while(arrow!=menu_confirm&&(int)arrow!=77);
-    if(arrow==menu_confirm)  players[player_num].c=select_no_control_button(players[player_num].c);
+    if((int)arrow==menu_confirm)  players[player_num].c=select_no_control_button();
     printf("\r");
     gotoyx(-1,9);
 player_color_fg:

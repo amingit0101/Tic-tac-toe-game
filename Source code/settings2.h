@@ -173,7 +173,7 @@ menu_go_back:
     do{
         arrow=getch();
         if((int)arrow==-32) arrow=getch();
-    }while(arrow!='\r'&&arrow!=72&&arrow!=75&&arrow!=77&&arrow!='\b');
+    }while(arrow!='\r'&&(int)arrow!=72&&(int)arrow!=75&&(int)arrow!=77&&(int)arrow!='\b');
     switch(arrow){
     case '\r':menu_go_back=select_button(menu_go_back);break;
     case '\b':goto save;
@@ -184,7 +184,7 @@ menu_next:
     do{
         arrow=getch();
         if((int)arrow==-32) arrow=getch();
-    }while(arrow!='\r'&&arrow!=72&&arrow!=75&&arrow!=77&&arrow!='\b');
+    }while(arrow!='\r'&&(int)arrow!=72&&(int)arrow!=75&&(int)arrow!=77&&arrow!='\b');
     switch(arrow){
     case '\r':menu_next=select_button(menu_next);break;
     case '\b':goto save;
@@ -195,7 +195,7 @@ menu_prev:
     do{
         arrow=getch();
         if((int)arrow==-32) arrow=getch();
-    }while(arrow!='\r'&&arrow!=72&&arrow!=75&&arrow!=77&&arrow!='\b');
+    }while(arrow!='\r'&&(int)arrow!=72&&(int)arrow!=75&&(int)arrow!=77&&arrow!='\b');
     switch(arrow){
     case '\r':menu_prev=select_button(menu_prev);gotoyx(1,0);goto menu_next;
     case '\b':goto save;

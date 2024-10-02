@@ -33,21 +33,21 @@ void random_color(rgb_color *color){
     }
 }
 bool no_control_char(char c){
-    if(c<33||c==127||c==129||c==157||c==141||c==143||c==144) return false;
+    if((int)c<33||(int)c==127||(int)c==129||(int)c==157||(int)c==141||(int)c==143||(int)c==144) return false;
     return true;
 }
 char next_no_control_char(char c){
     c++;
-    if(c>255) c=33;
-    else if(c==127||c==129||c==157||c==141) c++;
-    else if(c==143) c+=2;
+    if((int)c>255) c=33;
+    else if((int)c==127||(int)c==129||(int)c==157||(int)c==141) c++;
+    else if((int)c==143) c+=2;
     return c;
 }
 char previous_no_control_character(char c){
     c--;
-    if(c<33) c=255;
-    else if(c==127||c==129||c==157||c==141) c--;
-    else if(c==144) c-=2;
+    if((int)c<33) c=255;
+    else if((int)c==127||(int)c==129||(int)c==157||(int)c==141) c--;
+    else if((int)c==144) c-=2;
     return c;
 }
 void color_to_string(char *buffer_str,short buffer_size,rgb_color color,short mod){
@@ -61,7 +61,7 @@ void color_to_string(char *buffer_str,short buffer_size,rgb_color color,short mo
 void set_color(rgb_color color,short mod){
     char color_str[50];
     color_to_string(color_str,50,color,mod);
-    printf(color_str);
+    printf("%s",color_str);
 }
 rgb_color invert_color(rgb_color color){
     swap_int(&color.bg,&color.fg);
@@ -236,25 +236,25 @@ void write_tictactoe_table(){
         printf(reset_style);set_color(border_color,1);
         character(border_x,4*(dim-1));
         character(border_x,3);
-        printf(reset_style);
+        printf("%s",reset_style);
         printf("\n");
         space(shift_left);
         set_color(border_color,1);putchar(border_y);
         printf(reset_style);set_color(area_color,2);space(3);
         for(int j=0;j<dim-1;j++){
-            printf(reset_style);set_color(border_color,1);putchar(border_y);
-            printf(reset_style);set_color(area_color,2);space(3);
+            printf("%s",reset_style);set_color(border_color,1);putchar(border_y);
+            printf("%s",reset_style);set_color(area_color,2);space(3);
         }
-        printf(reset_style);set_color(border_color,1);putchar(border_y);
+        printf("%s",reset_style);set_color(border_color,1);putchar(border_y);
         printf("\n");
         if(i == dim-1 ){
             printf(" ");
             space(shift_left);
-            printf(reset_style);set_color(border_color,1);character(border_x,4*(dim-1));
-            printf(reset_style);set_color(border_color,1);character(border_x,3);
+            printf("%s",reset_style);set_color(border_color,1);character(border_x,4*(dim-1));
+            printf("%s",reset_style);set_color(border_color,1);character(border_x,3);
             printf("\n");
         }
-        printf(reset_style);
+        printf("%s",reset_style);
     }
 }
 #define Y 12
@@ -270,23 +270,23 @@ void write_main_menu(){
     space(shift_left_main_menu);puts("         -----------");
     printf("\n");
     space(shift_left_main_menu);
-    printf(" ");set_color(main_menu_borders_color,3);printf("-----------\n",reset_style);
-    space(shift_left_main_menu);set_color(main_menu_borders_color,3);printf("|",reset_style);
-    set_color(main_menu_string_color,1);printf("Two players",reset_style);
-    set_color(main_menu_string_color,3);printf("|\n",reset_style);
-    space(shift_left_main_menu);printf(" ");set_color(main_menu_borders_color,3);printf("-----------\n",reset_style);
+    printf(" ");set_color(main_menu_borders_color,3);printf("-----------\n","%s",reset_style);
+    space(shift_left_main_menu);set_color(main_menu_borders_color,3);printf("|","%s",reset_style);
+    set_color(main_menu_string_color,1);printf("Two players","%s"reset_style);
+    set_color(main_menu_string_color,3);printf("|\n","%s",reset_style);
+    space(shift_left_main_menu);printf(" ");set_color(main_menu_borders_color,3);printf("-----------\n","%s",reset_style);
     space(shift_left_main_menu);printf(" ");puts("             ");
-    space(shift_left_main_menu);printf(" ");set_color(main_menu_string_color,1);printf("Against a bot\n",reset_style);
+    space(shift_left_main_menu);printf(" ");set_color(main_menu_string_color,1);printf("Against a bot\n","%s",reset_style);
     space(shift_left_main_menu);printf(" ");puts("             ");
     space(shift_left_main_menu);printf(" ");puts("          ");
-    space(shift_left_main_menu);printf(" ");set_color(main_menu_string_color,1);printf("Parameters\n",reset_style);
+    space(shift_left_main_menu);printf(" ");set_color(main_menu_string_color,1);printf("Parameters\n","%s",reset_style);
     space(shift_left_main_menu);printf(" ");puts("          ");
     space(shift_left_main_menu);printf(" ");puts("    ");
-    space(shift_left_main_menu);printf(" ");set_color(main_menu_string_color,1);printf("Exit\n",reset_style);
+    space(shift_left_main_menu);printf(" ");set_color(main_menu_string_color,1);printf("Exit\n","%s",reset_style);
     space(shift_left_main_menu);printf(" ");puts("    ");
     printf("\n");
     space(shift_left_main_menu+1);set_color(main_menu_string_color,1);
-    printf("Press enter to close \n",reset_style);
+    printf("Press enter to close \n","%s",reset_style);
     while(getch()!='\r');
 }
 void write_parameters_menu(){
@@ -296,17 +296,17 @@ void write_parameters_menu(){
     space(shift_left_parameters_menu);puts("       Parameters:");
     printf("\n");
     space(shift_left_parameters_menu);printf(" ");puts("        ");
-    space(shift_left_parameters_menu);printf(" ");set_color(parameters_menu_string_color,1);printf("In game\n",reset_style);
+    space(shift_left_parameters_menu);printf(" ");set_color(parameters_menu_string_color,1);printf("In game\n","%s",reset_style);
     space(shift_left_parameters_menu);printf(" ");puts("        ");
     space(shift_left_parameters_menu);printf(" ");puts("     ");
-    space(shift_left_parameters_menu);printf(" ");set_color(parameters_menu_string_color,1);printf("Menus\n",reset_style);
+    space(shift_left_parameters_menu);printf(" ");set_color(parameters_menu_string_color,1);printf("Menus\n","%s",reset_style);
     space(shift_left_parameters_menu);printf(" ");puts("     ");
     space(shift_left_parameters_menu);printf(" ");puts("    ");
-    space(shift_left_parameters_menu);printf(" ");set_color(parameters_menu_string_color,1);printf("Bottons\n",reset_style);
+    space(shift_left_parameters_menu);printf(" ");set_color(parameters_menu_string_color,1);printf("Bottons\n","%s",reset_style);
     space(shift_left_parameters_menu);printf(" ");puts("    ");
     printf("\n");
     space(shift_left_parameters_menu+1);set_color(parameters_menu_string_color,1);
-    printf("Press enter to close \n",reset_style);
+    printf("Press enter to close \n","%s",reset_style);
 }
 void init_frame(char frame[Y][X]){
     for(int j=0;j<Y;j++) for(int i=0;i<X;i++) frame[j][i]='\0';
@@ -371,7 +371,7 @@ void game_buttons(){
     extern short up_left,up_right,down_left,down_right;
     extern short menu_up,menu_down,menu_go_back,menu_next,menu_prev,menu_confirm;
     printf("\033[?25l");
-    puts("         Setting bottons in game");
+    puts("         Bottons in game");
     printf("  Up:");print_button(up);puts("");
     printf("  Down:");print_button(down);puts("");
     printf("  Left:");print_button(left);puts("");
@@ -382,7 +382,7 @@ void game_buttons(){
     printf("  Up right:");print_button(up_right);puts("");
     printf("  Down left:");print_button(down_left);puts("");
     printf("  Down right:");print_button(down_right);puts("");
-    puts("         Setting bottons in menus");
+    puts("         Bottons in menus");
     printf("  Up:");print_button(menu_up);puts("");
     printf("  Down:");print_button(menu_down);puts("");
     printf("  Confirm:");print_button(menu_confirm);puts("");
