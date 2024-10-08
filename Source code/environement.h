@@ -8,7 +8,7 @@
 #include <stdarg.h>
 #include <math.h>
 #include <ctype.h>
-#ifdef _WIN32_
+#ifdef _WIN32
     #include <conio.h>
     #include <windows.h>
     #define delay(ms) Sleep(ms)
