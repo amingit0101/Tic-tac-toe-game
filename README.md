@@ -1,4 +1,4 @@
-The game must executed from lancher to costumize gameplay and buttons and menus
+The game must be executed from lancher to costumize gameplay and buttons and menus
 
 How to build from source code(not completed version):
   build game.c to game in linux and mac os
