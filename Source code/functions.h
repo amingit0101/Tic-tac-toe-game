@@ -1,65 +1,5 @@
 #ifndef FUNCTIONS_H_INCLUDED
 #define FUNCTIONS_H_INCLUDED
-void recover_variables(char *types_v, ...){
-    va_list arguments;
-    va_start(arguments,types_v);
-    char *ch=types_v;
-    char *ch1=types_v;
-    char tmp_type[30];
-    char src_char,*des_char,*des_string;
-    int src_int,*des_int;
-    rgb_color src_rgb,*des_rgb;
-    while(*ch!='\0'){
-        strcpy(tmp_type,"");
-        while(*ch1!=' '&&*ch1!='\0') strncat(tmp_type,ch1,1),ch1++;
-        if(strcmp(tmp_type,"int")==0){
-            des_int=va_arg(arguments,int *);
-            src_int=va_arg(arguments,int);
-            *des_int=src_int;
-        }else if(strcmp(tmp_type,"char")==0){
-            des_char=va_arg(arguments,char *);
-            src_char=va_arg(arguments,int);
-            *des_char=src_char;
-        }else if(strcmp(tmp_type,"string")==0){
-            des_string=va_arg(arguments,char *);
-            des_char=va_arg(arguments,char *);
-            strcpy(des_string,des_char);
-        }else if(strcmp(tmp_type,"rgb_color")==0){
-            des_rgb=va_arg(arguments,rgb_color *);
-            src_rgb=va_arg(arguments,rgb_color);
-            *des_rgb=src_rgb;
-        }
-        ch= ++ch1;
-    }
-    va_end(arguments);
-}
-void get_settings_table_arguments(char *buffer){
-    extern short dim,shift_left,shift_down;
-    extern short border_x,border_y;
-    extern rgb_color border_color,area_color;
-    char tmp_string[100]="";
-    strcpy(buffer,"");
-    short charactere;
-    for(int i=0;i<7;i++){
-        switch(i){
-        case 0:itoa(dim,tmp_string,10);break;
-        case 1:itoa(shift_left,tmp_string,10);break;
-        case 2:itoa(shift_down,tmp_string,10);break;
-        case 3:
-            charactere=(int)border_x;
-            itoa(charactere,tmp_string,10);
-            break;
-        case 4:
-            charactere=(int)border_y;
-            itoa(charactere,tmp_string,10);
-            break;
-        case 5:itoa(border_color.fg,tmp_string,10);break;
-        case 6:itoa(area_color.bg,tmp_string,10);break;
-        }
-        strcat(buffer,tmp_string);
-        strcat(buffer," ");
-    }
-}
 void get_settings_main_menu_arguments(char *buffer){
     extern rgb_color main_menu_borders_color,main_menu_string_color;
     extern short shift_left_main_menu,shift_down_main_menu;
@@ -184,39 +124,30 @@ void get_menu_buttons_setting_from_arguments(char *argv[]){
 }
 
 #ifdef _WIN32
-    void start_commend(char *buffer){
-        strcpy(buffer,"start cmd /k ");
-    }
     void start_program_new_window(char *name,char *arguments){
         char commend[300];
-        start_commend(commend);
-        strcat(commend,name);
-        strcat(commend,"\" ");
-        strcat(commend,arguments);
+        snprintf(commend,300,"start cmd /k \"%s.exe %s\"",name,arguments);
+        system(commend);
+    }
+#elif defined __MACH__
+    void start_program_new_window(char *name,char *arguments){
+        char commend[300];
+        snprintf(commend,300," osascript -e\"%s %s\"",name,arguments);
         system(commend);
     }
 #else
     void start_commend_new_window_xfce(char *buffer,char *program,char *arguments){
     //get the commend that execute the program in xfce terminal
-        strcpy(buffer,"xfce4-terminal -e ./");
-        strcat(buffer,program);
-        strcat(buffer," ");
-        strcat(buffer,arguments);
+        snprintf(buffer,300,"xfce4-terminal -e \"./%s %s\"",program,arguments);
         puts(buffer);
     }
     void start_commend_new_window_kde(char *buffer,char *program,char *arguments){
     //get the commend that execute the program in konsol (kde terminal)
-        strcpy(buffer,"konsole -e ./");
-        strcat(buffer,program);
-        strcat(buffer," ");
-        strcat(buffer,arguments);
+        snprintf(buffer,300,"konsole -e \"./%s %s\"",program,arguments);
     }
     void start_commend_new_window_xterm(char *buffer,char *program,char *arguments){
     //get the commend that execute the program in xterm terminal
-        strcpy(buffer,"xterm -e ./");
-        strcat(buffer,program);
-        strcat(buffer," ");
-        strcat(buffer,arguments);
+        snprintf(buffer,300,"xterm -e \"./%s %s\"",program,arguments);
     }
     bool executed(char commend[]){//try to execute a commed ,if executed return true else returns false
         char get_error[3]="";
