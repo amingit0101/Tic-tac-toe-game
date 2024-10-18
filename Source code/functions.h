@@ -1,5 +1,24 @@
 #ifndef FUNCTIONS_H_INCLUDED
 #define FUNCTIONS_H_INCLUDED
+void get_settings_table_arguments(char *buffer){
+    extern short dim,shift_left,shift_down;
+    extern short border_x,border_y;
+    extern rgb_color border_color,area_color;
+    char tmp_string[100]="";
+    for(int i=0;i<5;i++){
+        switch(i){
+        case 0:itoa(dim,tmp_string,10);break;
+        case 1:itoa(shift_left,tmp_string,10);break;
+        case 2:itoa(shift_down,tmp_string,10);break;
+        case 3:itoa(border_x,tmp_string,10);break;
+        case 4:itoa(border_y,tmp_string,10);break;
+        case 5:itoa(border_color.fg,tmp_string,10);break;
+        case 6:itoa(area_color.bg,tmp_string,10);break;
+        }
+        strcat(buffer,tmp_string);
+        strcat(buffer," ");
+    }
+}
 void get_settings_main_menu_arguments(char *buffer){
     extern rgb_color main_menu_borders_color,main_menu_string_color;
     extern short shift_left_main_menu,shift_down_main_menu;
